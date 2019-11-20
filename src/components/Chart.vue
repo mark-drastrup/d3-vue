@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2>Graph</h2>
+    <div id="visualization">
+        <h1>Network Graph Visualization</h1>
         <div id="network">
         </div>
     </div>
@@ -15,9 +15,9 @@ export default {
           .append("svg")
             .attr("height", this.height)
             .attr("width", this.width)
+            .style("border", "1px solid #fff")
           .append("g")
-            .attr("transform",
-              `translate(${40}, ${10})`)
+            
 
         this.edges = svg
           .selectAll("line")
@@ -33,7 +33,8 @@ export default {
           .enter()
           .append("circle")
             .attr("r", 20)
-            .attr("fill", "#69d296")
+            /* .attr("fill", "#69d296") */
+            .attr("fill", d => d.type === "primary" ? "#62d092" : d.type === "secondary" ? "#c4edd6" : "#cc0000")
             .style("cursor", "pointer")
             .on("mouseover", function() {
               d3.select(this).transition()
@@ -81,7 +82,7 @@ export default {
           .attr("startOffset", "50%")
           .style("text-anchor", "middle")
           .style("pointer-events", "none")
-          .text(function(d,i){return 'label '+i})
+          .text(function(d,i){return d.value})
           
 
         svg.append('defs').append('marker')
@@ -214,8 +215,17 @@ export default {
 </script>
 
 <style scoped>
-  h2 {
+  #visualization {
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+  }
+
+  h1 {
     color: #fff
+  }
+  .primary {
+    border: 1px solid pink
   }
 
 </style>

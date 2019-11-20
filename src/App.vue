@@ -18,6 +18,9 @@ export default {
 <style>
 body {
    background-color: #293740;
+   padding: 0;
+   margin: 0;
+   
 }
 
 #app {
