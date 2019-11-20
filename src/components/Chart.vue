@@ -24,7 +24,7 @@ export default {
           .data(this.linksArr)
           .enter()
           .append("line")
-            .attr("stroke", "black")
+            .attr("stroke", "#fff")
             .attr("stroke-width", 2)
 
         this.nodes = svg
@@ -33,7 +33,7 @@ export default {
           .enter()
           .append("circle")
             .attr("r", 20)
-            .attr("fill", "red")
+            .attr("fill", "#69d296")
             .style("cursor", "pointer")
             .on("mouseover", function() {
               d3.select(this).transition()
@@ -62,7 +62,7 @@ export default {
           .attr("stroke", "black")
           .attr("id", (d, i) => `edgepath${i}`)
           .attr('marker-end','url(#arrowhead)')
-            .style("stroke","#ccc")
+            .style("stroke","#fff")
             .style("pointer-events", "none");
 
         this.edgelabels = svg.selectAll(".edgelabel")
@@ -74,7 +74,7 @@ export default {
           .attr("id", (d, i) => `edgelabel${i}`)
           .attr("dy", -2)
           .attr("font-size", 12)
-          .attr("fill", "black")
+          .attr("fill", "#fff")
 
         this.edgelabels.append('textPath')
           .attr('xlink:href',function(d,i) {return '#edgepath'+i})
@@ -94,8 +94,8 @@ export default {
           .attr("xoverflow", "visible")
           .append('svg:path')
               .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-              .attr('fill', "black")
-              .attr('stroke',"black");
+              .attr('fill', "#fff")
+              .attr('stroke',"#fff");
 
         this.labels = svg
           .selectAll(".nodelabel")
@@ -105,7 +105,7 @@ export default {
             .text(d => d.name)
             .attr("font-family", "sans-serif")
             .attr("font-size", "16px")
-            .attr("fill", "black")
+            .attr("fill", "#85A585")
             .attr("text-anchor", "middle")
             .attr("dy", "-25")
             .style("cursor", "pointer")
@@ -145,7 +145,7 @@ export default {
         
         /* this.edgelabels
           .attr('transform',function(d,i) {
-            if (d.target.x<d.source.x) {
+            if (d.target.x<d.source.x && this) {
               bbox = this.getBBox();
               rx = bbox.x+bbox.width/2;
               ry = bbox.y+bbox.height/2;
@@ -214,8 +214,7 @@ export default {
 </script>
 
 <style scoped>
-  g {
-    width: 1000px;
-    height: 1000px;
+  h2 {
+    color: #fff
   }
 </style>
