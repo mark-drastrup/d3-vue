@@ -25,7 +25,7 @@ export default {
           .enter()
           .append("line")
             .attr("stroke", "#fff")
-            .attr("stroke-width", 2)
+            .attr("stroke-width", 1)
 
         this.nodes = svg
           .selectAll("circle")
@@ -81,7 +81,8 @@ export default {
           .attr("startOffset", "50%")
           .style("text-anchor", "middle")
           .style("pointer-events", "none")
-          .text(function(d,i){return 'label '+i});
+          .text(function(d,i){return 'label '+i})
+          
 
         svg.append('defs').append('marker')
           .attr("id", "arrowhead")
@@ -142,18 +143,17 @@ export default {
           return path
         })
 
-        
-        /* this.edgelabels
+        this.edgelabels
           .attr('transform',function(d,i) {
-            if (d.target.x<d.source.x && this) {
-              bbox = this.getBBox();
-              rx = bbox.x+bbox.width/2;
-              ry = bbox.y+bbox.height/2;
+            if (d.target.x<d.source.x) {
+              const bbox = this.getBBox();
+              const rx = bbox.x+bbox.width/2;
+              const ry = bbox.y+bbox.height/2;
               return 'rotate(180 '+rx+' '+ry+')';
             } else {
               return 'rotate(0)';
             }
-          }) */
+          })
       },
       dragStart(d) {
         this.simulation.alphaTarget(0.5).restart()
@@ -217,4 +217,5 @@ export default {
   h2 {
     color: #fff
   }
+
 </style>
