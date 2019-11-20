@@ -97,6 +97,20 @@ export default {
               .attr('fill', "black")
               .attr('stroke',"black");
 
+        this.labels = svg
+          .selectAll(".nodelabel")
+          .data(this.nodesArr)
+          .enter()
+          .append("text")
+            .text(d => d.name)
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "16px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .attr("dy", "-25")
+            .style("cursor", "pointer")
+            .style("font-weight", "bold")
+
         this.simulation = d3.forceSimulation(this.nodesArr)
           .force("link", d3.forceLink()
             .id(d => d.id)
@@ -118,6 +132,10 @@ export default {
          this.nodes
           .attr("cx", d => d.x )
           .attr("cy", d => d.y )
+
+        this.labels
+          .attr("x", d => d.x) 
+          .attr("y", d => d.y);
 
         this.edgepaths.attr("d", d => {
           const path = 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
